@@ -6,13 +6,11 @@ app = Flask(__name__)
 def inicio():
 	return render_template("index.html")
 
+@app.route('/potencia/',methods=["GET","POST"])
 @app.route("/potencia/<int:base>/<int:exponente>",methods=["GET","POST"])
-def saluda(cadena="NADIE",edad=1):
-	resultado = potencia**exponente
+def potencia(base=1,exponente=2):
+	resultado = base**exponente
 	return render_template("potencia.html",base=base,exponente=exponente,resultado=resultado)
 
-@app.route("/articulos/<int:numero>")
-def mostrar_ariculo(numero):
-    return render_template("articulos.html",id=numero)
 
 app.run(debug=True)
