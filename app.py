@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, abort
 app = Flask(__name__)	
 
 
@@ -13,7 +13,7 @@ def potencia(base=1,exponente=2):
 	return render_template("potencia.html",base=base,exponente=exponente,resultado=resultado)
 
 @app.route('/cuentaletras/',methods=["GET","POST"])
-@app.route("/cuenta/palabra/letra",methods=["GET","POST"])
+@app.route('/cuenta/<palabra>/<letra>',methods=["GET","POST"])
 def cuentaletras(palabra="hola",letra="a"):
 	if len(letra) > 1:
 		abort(404)
